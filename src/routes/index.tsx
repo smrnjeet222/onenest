@@ -172,7 +172,7 @@ function Hero() {
               width={heroKiosk.img.w}
               height={heroKiosk.img.h}
               fetchPriority="high"
-              decoding="async"
+              decoding="sync"
               className="w-full h-full object-cover opacity-95 group-hover:scale-[1.02] transition-transform duration-700"
             />
           </picture>

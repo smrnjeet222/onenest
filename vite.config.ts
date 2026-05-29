@@ -1,9 +1,27 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import { imagetools } from "vite-imagetools";
+
+function heroPreloadPlugin(): Plugin {
+  return {
+    name: "hero-preload",
+    transformIndexHtml(html, ctx) {
+      if (!ctx.bundle) return html;
+      const heroAvif = Object.keys(ctx.bundle).find(
+        (k) => k.includes("hero-kiosk") && k.endsWith(".avif") && !k.includes("480") && !k.includes("768")
+      );
+      if (!heroAvif) return html;
+      const href = `/${heroAvif}`;
+      return html.replace(
+        "</head>",
+        `<link rel="preload" as="image" href="${href}" type="image/avif" fetchpriority="high" />\n  </head>`
+      );
+    },
+  };
+}
 
 export default defineConfig({
   base: "/",
@@ -44,5 +62,6 @@ export default defineConfig({
     tailwindcss(),
     tsConfigPaths(),
     imagetools(),
+    heroPreloadPlugin(),
   ],
 });
