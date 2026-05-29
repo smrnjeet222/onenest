@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
           "Curated, intelligent shared kiosks for independent brands inside major UK shopping centres. High-street presence from £600/month. Launching Newcastle 2027.",
       },
       { name: "keywords", content: "shared retail, pop-up kiosk, UK shopping centres, independent brands, retail-as-a-service, Newcastle retail, brand kiosk" },
-      { property: "og:title", content: "OneNest — Shared retail for the indie brave" },
+      { property: "og:title", content: "OneNest — Shared retail for the indie brands" },
       {
         property: "og:description",
         content:
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image:width", content: "1216" },
       { property: "og:image:height", content: "640" },
       { property: "og:image:alt", content: "OneNest — three boutique shared kiosks inside a UK shopping centre" },
-      { name: "twitter:title", content: "OneNest — Shared retail for the indie brave" },
+      { name: "twitter:title", content: "OneNest — Shared retail for the indie brands" },
       { name: "twitter:description", content: "Curated, intelligent kiosks in major UK shopping centres. High-street presence for the cost of a studio space." },
       { name: "twitter:image", content: "https://onenest.uk/og-banner.jpg" },
     ],
@@ -138,7 +138,7 @@ function Hero() {
             <h1 className="font-display text-5xl md:text-7xl font-extrabold leading-[0.9] tracking-tighter text-balance mb-6">
               SHARED RETAIL
               <br />
-              <span className="text-terracotta">FOR THE INDIE</span> BRAVE.
+              <span className="text-terracotta">FOR THE INDIE</span> BRANDS.
             </h1>
             <p className="max-w-md text-lg text-ink/70 text-pretty leading-relaxed">
               Data-intelligent shared retail hubs inside the UK's biggest shopping centres. Your brand. Your kiosk. Shared space, shared costs.
@@ -468,8 +468,8 @@ function RoadmapSection() {
           </div>
 
           {/* Phase 2 */}
-          <div className="border border-ink/10 bg-ink text-paper flex flex-col">
-            <div className="aspect-[16/10] overflow-hidden border-b border-paper/10">
+          <div className="border border-paper/20 bg-ink text-paper flex flex-col">
+            <div className="aspect-[16/10] overflow-hidden border-b border-paper/20">
               <picture>
                 {Object.entries(smartKiosk.sources).map(([type, srcset]) => (
                   <source key={type} type={`image/${type}`} srcSet={srcset} sizes="(min-width: 768px) 50vw, 100vw" />
@@ -796,7 +796,7 @@ function LocationsSection() {
           </ol>
 
           {/* Stylised UK map */}
-          <div className="md:col-span-5 bg-paper border border-ink/[0.04] p-8 flex flex-col self-stretch">
+          <div className="md:col-span-5 bg-paper border border-forest/15 p-8 flex flex-col self-stretch">
             <div className="font-mono text-[10px] uppercase tracking-widest text-ink/35 mb-4">
               Planned UK Network
             </div>
