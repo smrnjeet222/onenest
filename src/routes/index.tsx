@@ -5,31 +5,30 @@ import { z } from "zod";
 import { toast } from "sonner";
 import heroKiosk from "@/assets/hero-kiosk.jpg?w=480;768;1024&format=avif;webp;jpg&as=picture";
 import hubInterior from "@/assets/hub-interior.jpg?w=480;768;1200&format=avif;webp;jpg&as=picture";
-import smartKiosk from "@/assets/smart-kiosk.jpg?w=480;768;1280&format=avif;webp;jpg&as=picture";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "OneNest — Shared retail hubs in UK shopping centres" },
+      { title: "OneNest · The retail incubator for indie brands" },
       {
         name: "description",
         content:
-          "Curated, intelligent shared kiosks for independent brands inside major UK shopping centres. High-street presence from £600/month. Launching Newcastle 2027.",
+          "A retail incubator inside major UK shopping centres. Independent brands share a staffed counter to test physical retail, then scale across our hubs. We hold the leases, so you never deal with a landlord. Launching Newcastle 2027.",
       },
-      { name: "keywords", content: "shared retail, pop-up kiosk, UK shopping centres, independent brands, retail-as-a-service, Newcastle retail, brand kiosk" },
-      { property: "og:title", content: "OneNest — Shared retail for the indie brands" },
+      { name: "keywords", content: "retail incubator, shared retail, shopping centre retail, independent brands, indie brands, market traders, local makers, retail-as-a-service, Newcastle retail, mall landlords, founder story screens, omnichannel retail, indie brand marketplace" },
+      { property: "og:title", content: "OneNest · The retail incubator for indie brands" },
       {
         property: "og:description",
         content:
-          "Curated, intelligent kiosks in major UK shopping centres. High-street presence for the cost of a studio space.",
+          "Test physical retail in a major UK shopping centre without the mall lease, the fit-out or the hire. Share a staffed counter, prove your sales, then scale. We deal with the landlords so you never do.",
       },
       { property: "og:url", content: "https://onenest.uk/" },
       { property: "og:image", content: "https://onenest.uk/og-banner.jpg" },
       { property: "og:image:width", content: "1216" },
       { property: "og:image:height", content: "640" },
-      { property: "og:image:alt", content: "OneNest — three boutique shared kiosks inside a UK shopping centre" },
-      { name: "twitter:title", content: "OneNest — Shared retail for the indie brands" },
-      { name: "twitter:description", content: "Curated, intelligent kiosks in major UK shopping centres. High-street presence for the cost of a studio space." },
+      { property: "og:image:alt", content: "OneNest · a curated shared retail counter inside a UK shopping centre" },
+      { name: "twitter:title", content: "OneNest · The retail incubator for indie brands" },
+      { name: "twitter:description", content: "Test physical retail in a major UK shopping centre without the mall lease, the fit-out or the hire. Prove your sales, then scale. We deal with the landlords so you never do." },
       { name: "twitter:image", content: "https://onenest.uk/og-banner.jpg" },
     ],
     links: [
@@ -45,7 +44,7 @@ export const Route = createFileRoute("/")({
           url: "https://onenest.uk/",
           inLanguage: "en-GB",
           description:
-            "Curated, intelligent shared kiosks for independent brands inside major UK shopping centres.",
+            "A retail incubator for independent brands inside major UK shopping centres. Online sellers, market traders and local makers share a staffed counter, get real footfall data, and scale on a short licence instead of a long lease of their own.",
         }),
       },
     ],
@@ -84,10 +83,12 @@ function Index() {
         <ProblemSection />
         <HowItWorks />
         <ConceptSection />
-        <RoadmapSection />
+        <StayAndScaleSection />
         <DataPlatformSection />
+        <StorytellingSection />
         <ForBrandsSection />
         <BuiltForSection />
+        <LandlordsSection />
         <LocationsSection />
         <BrandDeckSection />
         <WaitlistSection />
@@ -105,17 +106,17 @@ function SiteNav() {
           One Nest
         </a>
         <div className="hidden md:flex gap-7 text-xs font-semibold uppercase tracking-widest">
-          <a href="#concept" className="hover:text-terracotta transition-colors">Concept</a>
+          <a href="#concept" className="hover:text-terracotta transition-colors">The Incubator</a>
           <a href="#how" className="hover:text-terracotta transition-colors">How It Works</a>
-          <a href="#platform" className="hover:text-terracotta transition-colors">Platform</a>
+          <a href="#scale" className="hover:text-terracotta transition-colors">Scaling</a>
           <a href="#brands" className="hover:text-terracotta transition-colors">For Brands</a>
-          <a href="#locations" className="hover:text-terracotta transition-colors">Locations</a>
+          <a href="#landlords" className="hover:text-terracotta transition-colors">For Landlords</a>
         </div>
         <a
           href="#waitlist"
           className="bg-ink text-paper px-5 py-2 text-xs font-bold uppercase tracking-widest hover:bg-terracotta transition-colors"
         >
-          Join Waitlist
+          Apply Now
         </a>
       </div>
     </nav>
@@ -133,23 +134,25 @@ function Hero() {
               <span className="px-2 py-0.5 bg-forest text-paper text-[10px] font-mono uppercase tracking-tighter">
                 Launching 2027
               </span>
-              <span className="text-[10px] font-mono text-ink/40 uppercase">Newcastle · Hub 01</span>
+              <span className="text-[10px] font-mono text-ink/40 uppercase">Newcastle · Cohort 01</span>
             </div>
             <h1 className="font-display text-5xl md:text-7xl font-extrabold leading-[0.9] tracking-tighter text-balance mb-6">
-              SHARED RETAIL
+              THE RETAIL
               <br />
-              <span className="text-terracotta">FOR THE INDIE</span> BRANDS.
+              <span className="text-terracotta">INCUBATOR</span> FOR
+              <br />
+              INDIE BRANDS.
             </h1>
             <p className="max-w-md text-lg text-ink/70 text-pretty leading-relaxed">
-              Data-intelligent shared retail hubs inside the UK's biggest shopping centres. Your brand. Your kiosk. Shared space, shared costs.
+              Sell online, at markets, or straight from your kitchen table? This is your route into a real shopping centre. Share a staffed counter, prove your sales, then scale across our hubs. We hold the leases, so you never deal with a landlord.
             </p>
           </div>
           <div className="mt-12 flex flex-wrap gap-4">
             <a
-              href="#brands"
+              href="#waitlist"
               className="bg-terracotta text-paper px-8 py-4 font-bold uppercase text-xs tracking-widest ring-1 ring-terracotta hover:bg-transparent hover:text-terracotta transition-all"
             >
-              For Brands
+              Apply for Next Cohort
             </a>
             <a
               href="#how"
@@ -181,43 +184,65 @@ function Hero() {
         {/* Cost compare */}
         <div className="md:col-span-4 bg-paper border border-ink/10 p-8 flex flex-col justify-between animate-reveal [animation-delay:200ms]">
           <div className="font-mono text-[10px] uppercase tracking-widest text-ink/40 mb-6">
-            UK Retail · Avg
+            Your Own Mall Unit
           </div>
           <div>
             <div className="font-display text-5xl font-extrabold text-ink/80 line-through decoration-terracotta/60 decoration-[3px]">
               £3,000+
             </div>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-ink/50 mt-2">per month</p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-ink/50 mt-2">
+              per month · plus fit-out &amp; staff
+            </p>
           </div>
         </div>
 
-        <div className="md:col-span-4 bg-terracotta text-paper p-8 flex flex-col justify-between animate-reveal [animation-delay:250ms]">
+        <a
+          href="#waitlist"
+          className="md:col-span-4 bg-terracotta text-paper p-8 flex flex-col justify-between animate-reveal [animation-delay:250ms] group hover:bg-ink transition-colors"
+        >
           <div className="font-mono text-[10px] uppercase tracking-widest text-paper/70 mb-6">
-            One Nest · Shared Hub
+            One Nest · Shared Counter
           </div>
           <div>
-            <div className="font-display text-5xl font-extrabold">From £600</div>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-paper/70 mt-2">per month, all-in</p>
+            <div className="font-display text-5xl font-extrabold leading-[0.95]">
+              A fraction
+            </div>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-paper/70 mt-2">
+              of that · staff and fit-out included
+            </p>
+            <p className="font-mono text-[10px] uppercase tracking-widest mt-5 pt-4 border-t border-paper/25 flex items-center justify-between gap-2">
+              <span>Apply for next cohort</span>
+              <span className="inline-block group-hover:translate-x-1 transition-transform">→</span>
+            </p>
           </div>
-        </div>
+        </a>
       </div>
     </section>
   );
 }
 
 function StatsStrip() {
-  const stats = [
-    { v: "70–80%", l: "Cost savings vs traditional units" },
+  const stats: Array<{ p?: string; v: string; l: string }> = [
+    { v: "70–80%", l: "Lower cost than a unit of your own" },
     { v: "26M+", l: "Annual centre visitors" },
-    { v: "3–6", l: "Brands per curated hub" },
-    { v: "Top UK", l: "Shopping centre locations" },
+    { p: "Up to", v: "4", l: "Brands per incubator cohort" },
+    { v: "Zero", l: "Leases, hires or fit-out bills" },
   ];
   return (
     <section className="max-w-7xl mx-auto px-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-ink/10 border border-ink/10">
         {stats.map((s) => (
           <div key={s.l} className="bg-paper p-8">
-            <div className="font-display text-4xl md:text-5xl font-extrabold text-forest">{s.v}</div>
+            <div className="flex items-baseline gap-2">
+              {s.p && (
+                <span className="font-mono text-[10px] uppercase tracking-widest text-ink/40">
+                  {s.p}
+                </span>
+              )}
+              <span className="font-display text-4xl md:text-5xl font-extrabold text-forest">
+                {s.v}
+              </span>
+            </div>
             <p className="font-mono text-[10px] uppercase tracking-widest text-ink/50 mt-3 leading-relaxed">
               {s.l}
             </p>
@@ -245,35 +270,35 @@ function ProblemSection() {
   const items = [
     {
       tag: "Ceiling",
-      h: "The Market Stall Ceiling",
-      d: "Great for starting out, but limited footfall and no permanent presence keeps brands from scaling.",
+      h: "The Growth Ceiling",
+      d: "Ads get dearer every year and markets only run at weekends. With nowhere permanent to find you, growth stalls at a stubborn ceiling.",
       stat: "Limited",
-      sub: "footfall growth",
+      sub: "reach without retail",
     },
     {
       tag: "Cost",
       h: "The Cost Barrier",
-      d: "Traditional retail units cost thousands per month — impossible for most independent brands to afford.",
+      d: "Your own mall unit means rent, a shop fit-out and hiring staff. Tens of thousands before your first sale.",
       stat: "£3,000+",
-      sub: "per month for retail",
+      sub: "per month for a unit",
     },
     {
       tag: "Risk",
       h: "The Risk Factor",
-      d: "Long leases and upfront costs mean one bad quarter can end a promising brand's journey.",
+      d: "Multi-year leases and upfront costs mean one bad quarter can end a promising brand's journey.",
       stat: "70%",
       sub: "of new retail fails year 1",
     },
   ];
   return (
     <section className="max-w-7xl mx-auto px-6 py-24">
-      <SectionLabel index="01" total="08" name="The Problem" />
+      <SectionLabel index="01" total="10" name="The Problem" />
       <div className="grid md:grid-cols-12 gap-4 items-end mb-10">
-        <h2 className="md:col-span-8 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95]">
-          Retail shouldn't be <span className="text-terracotta">this hard.</span>
+        <h2 className="md:col-span-8 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] text-balance">
+          Going physical shouldn't be <span className="text-terracotta">all or nothing.</span>
         </h2>
         <p className="md:col-span-4 text-ink/70 leading-relaxed">
-          Independent brands are stuck between expensive retail units they can't afford and market stalls that limit their growth.
+          Independent brands are stuck between selling online and at weekend markets forever, or signing a lease they can't back out of. There's no safe middle step onto a real shop floor.
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -301,23 +326,23 @@ function HowItWorks() {
   const steps = [
     {
       n: "01",
-      t: "Apply Online",
-      d: "Submit your brand for consideration. We review product quality, brand values and fit with other hub brands.",
+      t: "Apply to a Cohort",
+      d: "Submit your brand for the next intake. We review product quality, brand values and fit with the other brands on the counter.",
     },
     {
       n: "02",
       t: "We Set Up Your Space",
-      d: "One Nest installs and owns everything. Your branded section is ready within our premium shared hub.",
+      d: "One Nest owns the lease, the fit-out and the counter. Your branded section is built out and merchandised for you.",
     },
     {
       n: "03",
-      t: "Customers Buy Your Products",
-      d: "Staff assist customers or they pay via contactless. Your products are displayed alongside complementary brands.",
+      t: "Our Staff Sell for You",
+      d: "One trained staff member works the counter for the whole cohort, demoing, selling and answering questions on your behalf.",
     },
     {
       n: "04",
-      t: "Track Sales in Real-Time",
-      d: "Access your dashboard to see live sales data, customer insights and performance analytics from anywhere.",
+      t: "Build Your Track Record",
+      d: "Live sales data, footfall and customer insight land in your dashboard. That's the evidence behind every decision about your next season.",
     },
   ];
   return (
@@ -325,14 +350,14 @@ function HowItWorks() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-baseline justify-between mb-8 px-1">
           <span className="font-mono text-[10px] uppercase tracking-widest text-paper/40">
-            [ 02 / 08 ]  How It Works
+            [ 02 / 10 ]  How It Works
           </span>
           <span className="font-mono text-[10px] uppercase tracking-widest text-paper/30">
             ~30 days to live
           </span>
         </div>
-        <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] max-w-3xl mb-16">
-          From application to sales in <span className="text-peach">four steps.</span>
+        <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] text-balance max-w-3xl mb-16">
+          From application to shop floor in <span className="text-peach">four steps.</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-px bg-paper/10 border border-paper/10">
           {steps.map((s) => (
@@ -349,57 +374,73 @@ function HowItWorks() {
 }
 
 function ConceptSection() {
-  const categories = [
-    "Beauty & Skincare",
-    "Fragrance & Candles",
-    "Lifestyle & Wellness",
-    "Sustainable Products",
-    "Tech Accessories",
-    "Fashion & Accessories",
+  const pillars = [
+    {
+      n: "01",
+      t: "Share the counter",
+      d: "Up to four complementary brands share one physical counter space and one trained staff member, so nobody carries high-street rent, a hiring bill or a shop fit-out on their own.",
+    },
+    {
+      n: "02",
+      t: "Get real footfall & data",
+      d: "You sell to thousands of real mall shoppers a week and see exactly what converts: units sold, peak hours, basket size, which products people actually pick up.",
+    },
+    {
+      n: "03",
+      t: "Scale on flexible terms",
+      d: "As your numbers grow, so does your space: a bigger counter, then more centres. We stay the mall's tenant on paper, so you expand on a short licence instead of a decade-long lease.",
+    },
   ];
   return (
     <section id="concept" className="max-w-7xl mx-auto px-6 py-24">
-      <SectionLabel index="03" total="08" name="The Concept" />
+      <SectionLabel index="03" total="10" name="The Incubator" />
+      <div className="grid md:grid-cols-12 gap-4 items-end mb-10">
+        <h2 className="md:col-span-7 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] text-balance">
+          Not a shop. <span className="text-forest">An incubator.</span>
+        </h2>
+        <p className="md:col-span-5 text-ink/70 leading-relaxed">
+          One Nest is a retail incubator: a launchpad where independent brands test selling in real shopping malls without the risk of taking a unit. Online sellers, market traders and local makers, all on one curated, human-staffed counter.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-px bg-sage/25 border border-sage/25 mb-4">
+        {pillars.map((p) => (
+          <div key={p.n} className="bg-sage/10 p-8 md:p-10 flex flex-col gap-6">
+            <span className="font-display text-5xl font-extrabold text-forest/70">{p.n}</span>
+            <div>
+              <h3 className="font-display text-2xl font-extrabold mb-3">{p.t}</h3>
+              <p className="text-sm text-ink/70 leading-relaxed">{p.d}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
       <div className="grid md:grid-cols-12 gap-4">
-        <div className="md:col-span-7 bg-sage/10 border border-sage/20 p-10 md:p-14">
-          <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] mb-8">
-            Your brand.
-            <br />
-            Your kiosk.
-            <br />
-            <span className="text-forest">Shared space.</span>
-          </h2>
-          <p className="text-ink/70 leading-relaxed max-w-md mb-10">
-            3–6 brands share one premium hub inside a major shopping centre. Each with their own fully branded kiosk. Rent, staffing and costs split between all brands.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {categories.map((c) => (
-              <span
-                key={c}
-                className="px-3 py-1.5 border border-forest/30 text-forest text-[10px] font-mono uppercase tracking-widest"
-              >
-                {c}
-              </span>
-            ))}
+        <div className="md:col-span-7 bg-forest text-paper p-8 md:p-10 flex flex-col justify-between gap-8">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-paper/50">
+            What You Don't Pay For
+          </span>
+          <div>
+            <div className="font-display text-3xl md:text-4xl font-extrabold leading-tight text-balance">
+              No mall lease. No shop fit-out. No hiring.
+            </div>
+            <p className="text-sm text-paper/70 mt-4 leading-relaxed max-w-lg">
+              Rent · fit-out · staff · POS · insurance · utilities. All owned and run by One Nest, and split across the cohort instead of landing on one brand.
+            </p>
           </div>
         </div>
-
-        <div className="md:col-span-5 grid grid-rows-2 gap-4">
-          <div className="bg-paper border border-ink/10 p-8 flex flex-col justify-between">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-ink/40">Hub Composition</span>
-            <div>
-              <div className="font-display text-7xl font-extrabold text-terracotta">3–6</div>
-              <p className="text-sm text-ink/60 mt-2">Curated complementary brands per hub.</p>
+        <div className="md:col-span-5 bg-paper border border-ink/10 p-8 flex flex-col justify-between gap-8">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-ink/40">
+            Cohort Composition
+          </span>
+          <div>
+            <div className="flex items-baseline gap-2">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-ink/40">Up to</span>
+              <span className="font-display text-7xl font-extrabold text-terracotta leading-none">4</span>
             </div>
-          </div>
-          <div className="bg-forest text-paper p-8 flex flex-col justify-between">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-paper/50">Shared Model</span>
-            <div>
-              <div className="font-display text-4xl font-extrabold">All-in-one</div>
-              <p className="text-sm text-paper/70 mt-2 leading-relaxed">
-                Rent · fit-out · staff · POS · insurance · utilities — handled by One Nest.
-              </p>
-            </div>
+            <p className="text-sm text-ink/60 mt-3">
+              Curated, non-competing brands per counter, kept deliberately tight so every brand gets real shelf presence and the staff know your products properly.
+            </p>
           </div>
         </div>
       </div>
@@ -407,108 +448,144 @@ function ConceptSection() {
   );
 }
 
-function RoadmapSection() {
+function StayAndScaleSection() {
+  const tiers = [
+    {
+      n: "Tier 01",
+      t: "Launch",
+      m: "One centre · shared counter",
+      d: "Your branded section of a staffed counter inside your first shopping centre, live in weeks alongside a curated cohort.",
+    },
+    {
+      n: "Tier 02",
+      t: "Expand",
+      m: "More space · prime position",
+      d: "Strong numbers earn you a bigger share of the counter, better positioning and first refusal on the next intake.",
+    },
+    {
+      n: "Tier 03",
+      t: "Network",
+      m: "Multi-centre · one agreement",
+      d: "Roll out across our hubs in new cities under a single agreement, without rebuilding your operation in every location.",
+    },
+  ];
+  const weHandle = [
+    "The lease and the landlord relationship",
+    "The covenant, guarantee and exit risk",
+    "Counter build, fit-out and upkeep",
+    "Staffing, rotas and product training",
+    "POS, insurance, utilities and compliance",
+  ];
+  const youHandle = [
+    "Your products and your stock",
+    "Your brand, your story, your pricing",
+    "When you're ready for more space",
+  ];
   return (
-    <section className="bg-paper border-y border-ink/10 py-24">
+    <section id="scale" className="bg-paper border-y border-ink/10 py-24">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionLabel index="04" total="08" name="Our Roadmap" />
+        <SectionLabel index="04" total="10" name="Scaling With Us" />
         <div className="grid md:grid-cols-12 gap-4 items-end mb-12">
-          <h2 className="md:col-span-7 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95]">
-            Two phases. <span className="text-terracotta">One vision.</span>
+          <h2 className="md:col-span-7 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] text-balance">
+            One counter today. <span className="text-terracotta">A national footprint next.</span>
           </h2>
           <p className="md:col-span-5 text-ink/70 leading-relaxed">
-            We're building the future of independent retail — starting with staffed hubs and evolving to fully automated smart kiosks.
+            We don't just hand you a shelf and wish you luck. Every step up is earned on your own trading data and unlocked by us, so growth is a commercial decision instead of a leap of faith.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-4">
-          {/* Phase 1 */}
-          <div className="border border-ink/10 bg-paper flex flex-col">
-            <div className="aspect-[16/10] overflow-hidden border-b border-ink/10">
-              <picture>
-                {Object.entries(hubInterior.sources).map(([type, srcset]) => (
-                  <source key={type} type={`image/${type}`} srcSet={srcset} sizes="(min-width: 768px) 50vw, 100vw" />
-                ))}
-                <img
-                  src={hubInterior.img.src}
-                  alt="Premium staffed retail hub inside shopping centre"
-                  width={hubInterior.img.w}
-                  height={hubInterior.img.h}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover"
-                />
-              </picture>
-            </div>
-            <div className="p-8 flex flex-col gap-6">
-              <div className="flex items-center justify-between">
-                <span className="px-2 py-0.5 bg-terracotta text-paper text-[10px] font-mono uppercase tracking-tighter">
-                  Phase 1 · Launching 2027
+        {/* Growth tiers */}
+        <ol className="grid md:grid-cols-3 gap-px bg-ink/10 border border-ink/10 mb-4">
+          {tiers.map((t, i) => (
+            <li
+              key={t.n}
+              className={`p-8 md:p-10 flex flex-col gap-6 ${
+                i === 2 ? "bg-forest text-paper" : "bg-paper hover:bg-sage/10 transition-colors"
+              }`}
+            >
+              <div className="flex items-baseline justify-between gap-4">
+                <span
+                  className={`font-mono text-[10px] uppercase tracking-widest ${
+                    i === 2 ? "text-paper/60" : "text-ink/40"
+                  }`}
+                >
+                  {t.n}
                 </span>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-ink/40">Newcastle</span>
+                <span
+                  className={`font-mono text-[10px] uppercase tracking-widest ${
+                    i === 2 ? "text-peach" : "text-terracotta"
+                  }`}
+                >
+                  {t.m}
+                </span>
               </div>
-              <h3 className="font-display text-3xl font-extrabold">Staffed Premium Hubs</h3>
-              <p className="text-sm text-ink/70 leading-relaxed">
-                A premium shared retail counter inside a shopping centre with dedicated staff. Think a mini beauty and lifestyle hall with 3–6 complementary independent brands side by side.
+              <h3 className="font-display text-3xl font-extrabold uppercase">{t.t}</h3>
+              <p className={`text-sm leading-relaxed ${i === 2 ? "text-paper/75" : "text-ink/65"}`}>
+                {t.d}
               </p>
-              <ul className="grid gap-2 text-sm">
-                {[
-                  "Professional staff to assist customers",
-                  "Premium counter display for your products",
-                  "3–6 carefully curated brands per hub",
-                  "Real-time sales data and insights",
-                ].map((b) => (
-                  <li key={b} className="flex gap-3">
-                    <span className="text-terracotta font-mono">+</span>
-                    <span className="text-ink/80">{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </li>
+          ))}
+        </ol>
+
+        {/* Division of risk */}
+        <div className="grid md:grid-cols-12 gap-4">
+          <div className="md:col-span-5 border border-ink/10 overflow-hidden min-h-64">
+            <picture>
+              {Object.entries(hubInterior.sources).map(([type, srcset]) => (
+                <source key={type} type={`image/${type}`} srcSet={srcset} sizes="(min-width: 768px) 40vw, 100vw" />
+              ))}
+              <img
+                src={hubInterior.img.src}
+                alt="Staffed One Nest retail counter inside a UK shopping centre"
+                width={hubInterior.img.w}
+                height={hubInterior.img.h}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover"
+              />
+            </picture>
           </div>
 
-          {/* Phase 2 */}
-          <div className="border border-paper/20 bg-ink text-paper flex flex-col">
-            <div className="aspect-[16/10] overflow-hidden border-b border-paper/20">
-              <picture>
-                {Object.entries(smartKiosk.sources).map(([type, srcset]) => (
-                  <source key={type} type={`image/${type}`} srcSet={srcset} sizes="(min-width: 768px) 50vw, 100vw" />
-                ))}
-                <img
-                  src={smartKiosk.img.src}
-                  alt="Automated smart retail kiosks in shopping centre"
-                  width={smartKiosk.img.w}
-                  height={smartKiosk.img.h}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover"
-                />
-              </picture>
-            </div>
-            <div className="p-8 flex flex-col gap-6">
-              <div className="flex items-center justify-between">
-                <span className="px-2 py-0.5 bg-sage text-ink text-[10px] font-mono uppercase tracking-tighter">
-                  Phase 2 · After Phase 1
-                </span>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-paper/40">Fully Automated</span>
-              </div>
-              <h3 className="font-display text-3xl font-extrabold">Automated Smart Hubs</h3>
-              <p className="text-sm text-paper/70 leading-relaxed">
-                Fully automated smart kiosks — no staff needed. Touchscreen browsing, contactless payment, and products dispensed instantly. Your brand selling 24/7.
+          <div className="md:col-span-7 bg-ink text-paper p-8 md:p-10 flex flex-col gap-10">
+            <div>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-paper/40">
+                How The Risk Splits
+              </span>
+              <h3 className="font-display text-3xl md:text-4xl font-extrabold tracking-tighter leading-[0.95] text-balance mt-6 mb-5">
+                We carry the property. <span className="text-peach">You carry the brand.</span>
+              </h3>
+              <p className="text-sm text-paper/70 leading-relaxed max-w-xl">
+                One Nest sits between you and the shopping centre. We hold the lease and negotiate as one established tenant rather than four small ones, so you reach prime space on a short, renewable licence with us instead of a decade of property risk in your name. Every tier above runs on the same terms, so growing your footprint never means starting the paperwork again.
               </p>
-              <ul className="grid gap-2 text-sm">
-                {[
-                  "24/7 operation — even when the centre is quiet",
-                  "Touchscreen product discovery",
-                  "Contactless Apple Pay & card payments",
-                  "Zero staff costs for brands",
-                ].map((b) => (
-                  <li key={b} className="flex gap-3">
-                    <span className="text-peach font-mono">+</span>
-                    <span className="text-paper/80">{b}</span>
-                  </li>
-                ))}
-              </ul>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-px bg-paper/10 border border-paper/10">
+              <div className="bg-ink p-6 flex flex-col gap-4">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-peach">
+                  One Nest handles
+                </span>
+                <ul className="grid gap-2.5 text-sm">
+                  {weHandle.map((b) => (
+                    <li key={b} className="flex gap-3 text-paper/80">
+                      <span className="font-mono text-peach">+</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="bg-ink p-6 flex flex-col gap-4">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-paper/50">
+                  You handle
+                </span>
+                <ul className="grid gap-2.5 text-sm">
+                  {youHandle.map((b) => (
+                    <li key={b} className="flex gap-3 text-paper/80">
+                      <span className="font-mono text-paper/40">+</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -520,37 +597,45 @@ function RoadmapSection() {
 function DataPlatformSection() {
   const features = [
     {
-      t: "Real-Time Sales",
-      d: "Watch your sales happen live. Every transaction, every product, every customer.",
+      t: "One Live Feed",
+      d: "Counter sales and marketplace orders land in the same place, so you see the whole picture, not half of it.",
+    },
+    {
+      t: "Your Own Storefront",
+      d: "A listing for every brand in the cohort, live from day one, with cross-discovery between neighbouring brands.",
+    },
+    {
+      t: "Scan To Buy",
+      d: "Counter QR codes land straight on your product page, so a browse in the mall can still close as a sale.",
     },
     {
       t: "Performance Analytics",
-      d: "Understand what's selling, peak times, and how you compare to other brands.",
-    },
-    {
-      t: "Instant Notifications",
-      d: "Get alerts for sales milestones, low stock, and important updates.",
+      d: "What's selling, peak trading hours, and how you compare to the other brands on the counter.",
     },
     {
       t: "Customer Insights",
-      d: "Learn about your customers to make smarter product and marketing decisions.",
+      d: "Learn who's actually buying, in person and online, so your next product call isn't guesswork.",
+    },
+    {
+      t: "Always On",
+      d: "Your storefront stays live between trading seasons and follows you into every centre you open in.",
     },
   ];
   return (
     <section id="platform" className="max-w-7xl mx-auto px-6 py-24">
-      <SectionLabel index="05" total="08" name="Data Platform" />
+      <SectionLabel index="05" total="10" name="Platform & Marketplace" />
       <div className="grid md:grid-cols-12 gap-4 items-end mb-12">
-        <h2 className="md:col-span-7 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95]">
-          Your business. Your data. <span className="text-terracotta">Your dashboard.</span>
+        <h2 className="md:col-span-7 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] text-balance">
+          Sell in the mall. Sell online. <span className="text-terracotta">Run both from one place.</span>
         </h2>
         <p className="md:col-span-5 text-ink/70 leading-relaxed">
-          Every brand gets access to our real-time analytics platform. See exactly how your products perform, understand your customers, and make data-driven decisions.
+          Every brand gets a live dashboard and a storefront on the One Nest marketplace. Most shoppers don't buy on the first pass, so when someone picks your product up and puts it back, they can scan the counter screen and buy that evening from the sofa.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-12 gap-4">
+      <div className="grid md:grid-cols-12 gap-4 mb-4">
         {/* Mock dashboard */}
-        <div className="md:col-span-7 bg-ink text-paper p-8 md:p-10 flex flex-col gap-8">
+        <div className="md:col-span-7 bg-ink text-paper p-6 md:p-8 flex flex-col justify-between gap-6">
           <div className="flex items-center justify-between">
             <span className="font-mono text-[10px] uppercase tracking-widest text-paper/50">
               one-nest / dashboard
@@ -561,39 +646,41 @@ function DataPlatformSection() {
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="border border-paper/10 p-5">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="border border-paper/10 p-4">
               <p className="font-mono text-[10px] uppercase tracking-widest text-paper/40">Today's Revenue</p>
-              <p className="font-display text-4xl font-extrabold mt-2">£847.50</p>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-sage mt-2">
+              <p className="font-display text-3xl font-extrabold mt-1.5">£847.50</p>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-sage mt-1.5">
                 ↑ +23% vs yesterday
               </p>
             </div>
-            <div className="border border-paper/10 p-5">
+            <div className="border border-paper/10 p-4">
               <p className="font-mono text-[10px] uppercase tracking-widest text-paper/40">Last Sale</p>
-              <p className="font-display text-4xl font-extrabold mt-2">£24.99</p>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-peach mt-2">
-                Just now · contactless
+              <p className="font-display text-3xl font-extrabold mt-1.5">£24.99</p>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-peach mt-1.5">
+                Just now · scanned in store
               </p>
             </div>
           </div>
 
-          {/* Bar chart */}
+          {/* Bar chart. Each pair is [counter %, online %] of the plot height. */}
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-paper/40 mb-4">
-              7-day footfall vs sales
+            <p className="font-mono text-[10px] uppercase tracking-widest text-paper/40 mb-3">
+              7-day sales · counter vs online
             </p>
-            <div className="flex items-end gap-2 h-32">
-              {[42, 58, 47, 71, 65, 88, 76].map((h, i) => (
-                <div key={i} className="flex-1 flex flex-col gap-1 items-center">
-                  <div
-                    className="w-full bg-terracotta/80"
-                    style={{ height: `${h}%` }}
-                  />
-                  <div
-                    className="w-full bg-sage/60"
-                    style={{ height: `${h * 0.45}%` }}
-                  />
+            <div className="flex items-end gap-1.5 h-24">
+              {[
+                [30, 12],
+                [40, 18],
+                [33, 14],
+                [48, 23],
+                [45, 20],
+                [58, 30],
+                [50, 26],
+              ].map(([counter, online], i) => (
+                <div key={i} className="flex-1 h-full flex flex-col justify-end gap-0.5">
+                  <div className="w-full bg-terracotta/80" style={{ height: `${counter}%` }} />
+                  <div className="w-full bg-sage/60" style={{ height: `${online}%` }} />
                 </div>
               ))}
             </div>
@@ -604,27 +691,208 @@ function DataPlatformSection() {
             </div>
           </div>
 
-          <div className="border-t border-paper/10 pt-5 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-paper/40">
-            <span>Hub 01 · Newcastle</span>
-            <span>Conv. rate · 18.4%</span>
+          <div className="border-t border-paper/10 pt-4 flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-widest text-paper/40">
+            <span>Cohort 01 · Newcastle</span>
+            <span className="flex items-center gap-4">
+              <span className="flex items-center gap-2">
+                <span className="size-2 bg-terracotta/80" /> Counter
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="size-2 bg-sage/60" /> Online
+              </span>
+            </span>
           </div>
         </div>
 
-        <div className="md:col-span-5 grid gap-4">
-          {features.map((f, i) => (
-            <div
-              key={f.t}
-              className="bg-paper border border-ink/10 p-6 flex gap-5 hover:border-terracotta/40 transition-colors"
-            >
-              <div className="font-display text-xl font-extrabold text-terracotta w-10 shrink-0">
-                0{i + 1}
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-lg">{f.t}</h3>
-                <p className="text-sm text-ink/60 mt-1 leading-relaxed">{f.d}</p>
+        {/* Mock marketplace */}
+        <div className="md:col-span-5 bg-forest text-paper p-6 md:p-8 flex flex-col justify-between gap-6">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-paper/60">
+              onenest.uk / shop
+            </span>
+            <span className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-paper/60">
+              <span className="size-1.5 bg-peach rounded-full animate-pulse" />
+              4 brands live
+            </span>
+          </div>
+
+          <ul className="grid divide-y divide-paper/15 border-y border-paper/15">
+            {[
+              { tone: "bg-terracotta", k: "Brand 01", c: "Skincare" },
+              { tone: "bg-peach", k: "Brand 02", c: "Candles" },
+              { tone: "bg-sage", k: "Brand 03", c: "Wellness" },
+              { tone: "bg-paper/70", k: "Brand 04", c: "Accessories" },
+            ].map((t) => (
+              <li key={t.k} className="flex items-center gap-4 py-3">
+                <span className={`size-9 shrink-0 ${t.tone}`} />
+                <span className="flex-1">
+                  <span className="block font-display font-bold text-sm">{t.k}</span>
+                  <span className="block font-mono text-[9px] uppercase tracking-widest text-paper/50 mt-0.5">
+                    {t.c}
+                  </span>
+                </span>
+                <span className="font-mono text-[9px] uppercase tracking-widest text-peach">
+                  In stock
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-paper/50">
+            <span>Discovered in store</span>
+            <span className="text-peach">Bought online</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-ink/10 border border-ink/10">
+        {features.map((f, i) => (
+          <div
+            key={f.t}
+            className="bg-paper p-6 flex gap-5 hover:bg-sage/10 transition-colors"
+          >
+            <div className="font-display text-xl font-extrabold text-terracotta w-8 shrink-0">
+              0{i + 1}
+            </div>
+            <div>
+              <h3 className="font-display font-bold text-lg">{f.t}</h3>
+              <p className="text-sm text-ink/60 mt-1 leading-relaxed">{f.d}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function StorytellingSection() {
+  const forBrands = [
+    "A 15-second founder film on loop beside your products",
+    "A QR code straight through to your marketplace listing",
+    "Your own colours, packaging shots and voice, not a shelf label",
+    "Screen time rotates across the cohort through the trading day",
+  ];
+  const forLandlords = [
+    "A living, moving visual asset on the concourse",
+    "No static printed signage going stale by month three",
+    "Omnichannel sales: buy at the counter, or scan and buy later",
+    "Fresh content every cohort, so the space never looks tired",
+  ];
+  const upNext = [
+    { k: "Brand 02", c: "Candles" },
+    { k: "Brand 03", c: "Wellness" },
+    { k: "Brand 04", c: "Accessories" },
+  ];
+  return (
+    <section id="storytelling" className="bg-sage/10 border-y border-sage/20 py-24">
+      <div className="max-w-7xl mx-auto px-6">
+        <SectionLabel index="06" total="10" name="Digital Storytelling" />
+        <div className="grid md:grid-cols-12 gap-4 items-end mb-12">
+          <h2 className="md:col-span-7 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] text-balance">
+            Product gets attention. <span className="text-terracotta">Story gets the sale.</span>
+          </h2>
+          <p className="md:col-span-5 text-ink/70 leading-relaxed">
+            Screens built into the counter carry short founder films, so shoppers meet the person behind the product. Staffed selling up front, your story running behind it.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-12 gap-4">
+          {/* Screen mock */}
+          <div className="md:col-span-5 bg-ink text-paper p-6 md:p-8 flex flex-col justify-between gap-6">
+            <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest">
+              <span className="flex items-center gap-2 text-paper/50">
+                <span className="size-1.5 bg-terracotta rounded-full animate-pulse" />
+                On screen now
+              </span>
+              <span className="text-paper/50">00:15</span>
+            </div>
+
+            <div className="border border-paper/10 p-6 flex flex-col gap-4">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-peach">
+                Founder Story
+              </span>
+              <p className="font-display text-2xl md:text-3xl font-extrabold leading-[1.05] text-balance">
+                &ldquo;I started this in my kitchen in Gateshead.&rdquo;
+              </p>
+              <p className="text-sm text-paper/60 leading-relaxed">
+                Your brand. Your face. Fifteen seconds, on loop, right where a shopper is already standing.
+              </p>
+              <div className="h-1 bg-paper/10">
+                <div className="h-full w-2/3 bg-terracotta" />
               </div>
             </div>
-          ))}
+
+            <div className="flex flex-col gap-3">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-paper/40">
+                Up next
+              </span>
+              <ul className="divide-y divide-paper/10 border-y border-paper/10">
+                {upNext.map((u) => (
+                  <li key={u.k} className="flex items-center justify-between gap-4 py-3">
+                    <span className="flex items-baseline gap-3">
+                      <span className="font-display font-bold text-sm">{u.k}</span>
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-paper/40">
+                        {u.c}
+                      </span>
+                    </span>
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-paper/40">
+                      00:15
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-paper/40">
+                Rotates all day · every brand on the counter
+              </p>
+            </div>
+          </div>
+
+          {/* Two audiences */}
+          <div className="md:col-span-7 grid gap-4">
+            <div className="bg-paper border border-ink/10 p-6 md:p-8 flex flex-col justify-between gap-5">
+              <div className="flex items-baseline justify-between gap-4">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-terracotta">
+                  For Brands
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-ink/30">
+                  Shelf presence + story
+                </span>
+              </div>
+              <h3 className="font-display text-2xl md:text-3xl font-extrabold text-balance">
+                A counter shelf can't explain why you started. A screen can.
+              </h3>
+              <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
+                {forBrands.map((b) => (
+                  <li key={b} className="flex gap-3 text-ink/70">
+                    <span className="font-mono text-terracotta">+</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="bg-forest text-paper p-6 md:p-8 flex flex-col justify-between gap-5">
+              <div className="flex items-baseline justify-between gap-4">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-peach">
+                  For Landlords
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-paper/50">
+                  Concourse asset
+                </span>
+              </div>
+              <h3 className="font-display text-2xl md:text-3xl font-extrabold text-balance">
+                An interactive unit on your concourse, not another static display.
+              </h3>
+              <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
+                {forLandlords.map((b) => (
+                  <li key={b} className="flex gap-3 text-paper/80">
+                    <span className="font-mono text-peach">+</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -633,32 +901,32 @@ function DataPlatformSection() {
 
 function ForBrandsSection() {
   const benefits = [
-    "Save 70–80% vs traditional retail",
-    "No long-term leases or commitments",
-    "Premium shopping centre locations",
-    "Professional staff handle sales",
-    "Real-time sales data & insights",
-    "Collective marketing support",
-    "Online presence through our platform",
-    "Focus on products — we handle the rest",
+    "Test physical retail on a short licence",
+    "No shop fit-out or hiring costs",
+    "70–80% cheaper than a unit of your own",
+    "A trained staff member sells for you",
+    "Real mall footfall and sales data",
+    "We carry the mall lease, not you",
+    "Screen story plus a marketplace storefront",
+    "Scale into more space and more cities",
   ];
   return (
     <section id="brands" className="bg-terracotta text-paper py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-baseline justify-between mb-8 px-1">
           <span className="font-mono text-[10px] uppercase tracking-widest text-paper/60">
-            [ 06 / 08 ]  For Brands
+            [ 07 / 10 ]  For Brands
           </span>
           <span className="font-mono text-[10px] uppercase tracking-widest text-paper/50">
-            From £600 / month
+            Cohort 01 · Applications open
           </span>
         </div>
         <div className="grid md:grid-cols-12 gap-4 mb-12">
-          <h2 className="md:col-span-8 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95]">
-            Your premium retail presence. Without the <span className="text-ink">premium price.</span>
+          <h2 className="md:col-span-8 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] text-balance">
+            Real shop floor. <span className="text-ink">None of the risk.</span>
           </h2>
           <p className="md:col-span-4 text-paper/80 leading-relaxed">
-            Join One Nest and get your brand into the UK's biggest shopping centres. You bring your products, we handle everything else — from the kiosk to the staff to the data.
+            Join a cohort and get your brand into a major UK shopping centre. You bring the products; we handle the space, the staff, the systems and the data, then split the cost across every brand on the counter.
           </p>
         </div>
 
@@ -678,10 +946,10 @@ function ForBrandsSection() {
             href="#waitlist"
             className="bg-paper text-terracotta px-8 py-4 font-bold uppercase text-xs tracking-widest hover:bg-ink hover:text-paper transition-colors"
           >
-            Register Brand Interest
+            Apply for Next Cohort
           </a>
           <a
-            href="mailto:raman@onenest.uk"
+            href="mailto:partnership@onenest.uk"
             className="border border-paper/50 px-8 py-4 font-bold uppercase text-xs tracking-widest hover:bg-paper hover:text-terracotta transition-colors"
           >
             Get in Touch →
@@ -705,13 +973,13 @@ function BuiltForSection() {
   ];
   return (
     <section className="max-w-7xl mx-auto px-6 py-24">
-      <SectionLabel index="07" total="08" name="Built For" />
+      <SectionLabel index="08" total="10" name="Built For" />
       <div className="grid md:grid-cols-12 gap-4 items-end mb-12">
-        <h2 className="md:col-span-7 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95]">
+        <h2 className="md:col-span-7 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] text-balance">
           Brands we're <span className="text-terracotta">built for.</span>
         </h2>
         <p className="md:col-span-5 text-ink/70 leading-relaxed">
-          One Nest is designed for independent beauty, lifestyle, wellness and tech brands ready to take their first step into premium physical retail.
+          Independent beauty, lifestyle, wellness and tech brands taking their first step into permanent retail. Online-first, market-tested or hand-made, with enough traction to sell but not enough to sign a lease.
         </p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-ink/10 border border-ink/10">
@@ -733,6 +1001,61 @@ function BuiltForSection() {
   );
 }
 
+function LandlordsSection() {
+  const points = [
+    {
+      t: "Fresh, local indie brands",
+      d: "We bring in curated, vetted independent brands your shoppers can't find anywhere else. The kind of line-up that makes a centre feel local instead of identikit.",
+    },
+    {
+      t: "A feeder pipeline for tenants",
+      d: "We incubate brands until they're proven traders, then grow them into more of your centre, either expanding with us or taking a unit of their own. Either way your next long-term tenant already has a sales record inside your building.",
+    },
+    {
+      t: "One operator, one contract",
+      d: "You deal with One Nest, not four separate small brands. We hold the agreement, staff the space and run the counter to your centre's standards.",
+    },
+  ];
+  return (
+    <section id="landlords" className="bg-ink text-paper py-24">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-baseline justify-between mb-8 px-1">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-paper/40">
+            [ 09 / 10 ]  For Landlords
+          </span>
+          <span className="font-mono text-[10px] uppercase tracking-widest text-paper/30">
+            Centre &amp; asset managers
+          </span>
+        </div>
+        <div className="grid md:grid-cols-12 gap-4 items-end mb-12">
+          <h2 className="md:col-span-7 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] text-balance">
+            We grow your <span className="text-peach">next long&#8209;term tenants.</span>
+          </h2>
+          <p className="md:col-span-5 text-paper/70 leading-relaxed">
+            One Nest fills space with fresh local brands today and turns the best of them into full-unit tenants tomorrow. Think of us as an incubator floor for your centre.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-px bg-paper/10 border border-paper/10 mb-10">
+          {points.map((p) => (
+            <div key={p.t} className="bg-ink p-8 flex flex-col gap-4 hover:bg-forest/30 transition-colors">
+              <h3 className="font-display text-2xl font-extrabold">{p.t}</h3>
+              <p className="text-sm text-paper/60 leading-relaxed">{p.d}</p>
+            </div>
+          ))}
+        </div>
+
+        <a
+          href="mailto:partnership@onenest.uk?subject=One%20Nest%20Landlord%20Enquiry"
+          className="inline-block bg-peach text-ink px-8 py-4 font-bold uppercase text-xs tracking-widest hover:bg-paper transition-colors"
+        >
+          Talk to Us About Your Centre →
+        </a>
+      </div>
+    </section>
+  );
+}
+
 function LocationsSection() {
   const cities = [
     { name: "Newcastle", status: "Launching 2027", live: true },
@@ -746,13 +1069,13 @@ function LocationsSection() {
   return (
     <section id="locations" className="bg-sage/10 border-y border-sage/20 py-24">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionLabel index="08" total="08" name="Our Vision · Locations" />
+        <SectionLabel index="10" total="10" name="Our Vision · Locations" />
         <div className="grid md:grid-cols-12 gap-4 items-end mb-12">
-          <h2 className="md:col-span-8 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] text-forest">
+          <h2 className="md:col-span-8 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] text-balance text-forest">
             Starting in Newcastle. <span className="text-terracotta">Expanding across the UK.</span>
           </h2>
           <p className="md:col-span-4 text-ink/70 leading-relaxed">
-            We're launching our first hub in Newcastle in 2027, with plans to expand to major UK cities. Join early and grow with us.
+            Our first incubator hub opens in Newcastle in 2027, with plans to expand to major UK cities. Join early and grow with us.
           </p>
         </div>
 
@@ -807,7 +1130,7 @@ function LocationsSection() {
               preserveAspectRatio="xMidYMid meet"
               aria-label="Planned UK city network"
             >
-              {/* Great Britain outline — coordinates projected from real lat/lon */}
+              {/* Great Britain outline: coordinates projected from real lat/lon */}
               <path
                 d="M72,12 L100,42 L98,60 L82,94 L100,103
                    L120,138 L153,173 L183,194 L194,209
@@ -825,7 +1148,7 @@ function LocationsSection() {
                 strokeLinejoin="round"
                 className="text-forest/35"
               />
-              {/* City markers — positions from real coordinates */}
+              {/* City markers: positions from real coordinates */}
               {[
                 { x: 70, y: 97,  label: "Edinburgh", anchor: "start" as const },
                 { x: 44, y: 99,  label: "Glasgow",   anchor: "end"   as const },
@@ -892,15 +1215,15 @@ function BrandDeckSection() {
   ];
   const contents = [
     "Market opportunity & UK retail landscape",
-    "Hub design, kiosk dimensions & materials",
-    "Commercial terms, pricing tiers & licence length",
-    "Data platform walkthrough & sample dashboards",
-    "Newcastle Hub 01 floorplan & footfall projections",
-    "Roadmap to automated smart hubs (Phase 2)",
+    "The incubator model, counter design & screen media",
+    "Commercial terms, cohort pricing & licence length",
+    "Dashboard and marketplace walkthrough",
+    "Newcastle Cohort 01 floorplan & footfall projections",
+    "The path from one shelf to a multi-centre footprint",
   ];
   return (
     <section id="deck" className="max-w-7xl mx-auto px-6 py-24">
-      <SectionLabel index="—" total="—" name="Brand Deck" />
+      <SectionLabel index="00" total="10" name="Brand Deck" />
       <div className="grid md:grid-cols-12 gap-4">
         {/* Deck preview card */}
         <div className="md:col-span-5 bg-ink text-paper p-8 md:p-10 flex flex-col gap-8 relative overflow-hidden">
@@ -921,7 +1244,7 @@ function BrandDeckSection() {
               The Brand Deck
             </div>
             <h3 className="font-display text-4xl md:text-5xl font-extrabold tracking-tighter leading-[0.95]">
-              Everything a brand needs to evaluate One Nest in one document.
+              Everything a brand needs to evaluate the incubator in one document.
             </h3>
           </div>
           <div className="relative grid grid-cols-4 gap-px bg-paper/10 border border-paper/10">
@@ -942,7 +1265,7 @@ function BrandDeckSection() {
               Request Deck
             </a>
             <a
-              href="mailto:raman@onenest.uk?subject=Brand%20Deck%20Request"
+              href="mailto:partnership@onenest.uk?subject=Brand%20Deck%20Request"
               className="border border-paper/30 px-6 py-3 font-bold uppercase text-xs tracking-widest hover:bg-paper hover:text-ink transition-colors"
             >
               Email Founder
@@ -1032,7 +1355,7 @@ function WaitlistForm() {
           Confirmed · Application received
         </p>
         <h3 className="font-display text-2xl md:text-3xl font-extrabold mb-3">
-          You're on the Newcastle waitlist.
+          You're in for Newcastle Cohort 01.
         </h3>
         <p className="text-paper/70 text-sm leading-relaxed mb-6">
           We'll review your brand and reply within 7 working days. In the meantime, request the brand deck or email the founder directly.
@@ -1050,7 +1373,7 @@ function WaitlistForm() {
 
   return (
     <form noValidate onSubmit={handleSubmit} className="bg-paper/10 border border-paper/20 p-8 md:p-10 grid gap-6">
-      {/* Honeypot — real users never fill this */}
+      {/* Honeypot: real users never fill this */}
       <input
         type="text"
         name="_gotcha"
@@ -1097,7 +1420,7 @@ function WaitlistForm() {
           disabled={submitting}
           className="bg-terracotta text-paper px-8 py-4 text-xs font-bold uppercase tracking-widest ring-1 ring-terracotta hover:bg-peach hover:text-ink transition-colors disabled:opacity-60"
         >
-          {submitting ? "Submitting…" : "Join the Waitlist"}
+          {submitting ? "Submitting…" : "Apply for Next Cohort"}
         </button>
       </div>
     </form>
@@ -1164,27 +1487,27 @@ function WaitlistSection() {
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="flex items-baseline justify-between mb-8 px-1">
           <span className="font-mono text-[10px] uppercase tracking-widest text-paper/50">
-            Apply Now · Hub 01
+            Apply Now · Cohort 01
           </span>
           <span className="font-mono text-[10px] uppercase tracking-widest text-paper/50">
-            6 curated slots remaining
+            4 curated slots per cohort
           </span>
         </div>
 
         <div className="grid md:grid-cols-12 gap-10 md:gap-4 items-start">
           <div className="md:col-span-6">
-            <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] mb-6">
-              The future of retail is <span className="text-peach">shared, smart and automated.</span>
+            <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] text-balance mb-6">
+              Test the high street <span className="text-peach">without betting the brand.</span>
             </h2>
             <p className="text-paper/70 leading-relaxed max-w-md mb-10">
-              Join the waitlist and be among the first brands in our Newcastle pilot — launching early 2027.
+              Apply for a place in our first Newcastle cohort, launching early 2027. Pricing is set per cohort, so tell us about your brand and we'll talk numbers that fit it.
             </p>
             <dl className="grid grid-cols-2 gap-px bg-paper/15 border border-paper/15 max-w-md">
               {[
                 { k: "Launch", v: "Q1 2027" },
                 { k: "City", v: "Newcastle" },
-                { k: "Slots", v: "6 brands" },
-                { k: "From", v: "£600 / mo" },
+                { k: "Cohort", v: "4 brands" },
+                { k: "Term", v: "Flexible" },
               ].map((m) => (
                 <div key={m.k} className="bg-forest p-5">
                   <dt className="font-mono text-[10px] uppercase tracking-widest text-paper/50">
@@ -1201,7 +1524,7 @@ function WaitlistSection() {
               Register Your Interest
             </p>
             <h3 className="font-display text-2xl md:text-3xl font-extrabold mb-6">
-              Join our waitlist to be notified when we launch.
+              Apply for a place in the next cohort.
             </h3>
             <WaitlistForm />
           </div>
@@ -1220,27 +1543,29 @@ function SiteFooter() {
             One Nest
           </div>
           <p className="text-sm text-ink/60 mt-4 max-w-sm leading-relaxed">
-            Data-intelligent shared retail hubs for independent brands. Built for the new high street.
+            A retail incubator for independent brands. Shared staffed counters in real shopping centres, and room to scale without taking on a mall lease of your own.
           </p>
         </div>
         <div className="md:col-span-2 grid gap-3 text-sm">
           <p className="font-mono text-[10px] uppercase tracking-widest text-ink/40">Navigate</p>
-          <a href="#concept" className="hover:text-terracotta transition-colors">Concept</a>
+          <a href="#concept" className="hover:text-terracotta transition-colors">The Incubator</a>
           <a href="#how" className="hover:text-terracotta transition-colors">How It Works</a>
-          <a href="#platform" className="hover:text-terracotta transition-colors">Platform</a>
-          <a href="#brands" className="hover:text-terracotta transition-colors">For Brands</a>
+          <a href="#scale" className="hover:text-terracotta transition-colors">Scaling</a>
+          <a href="#platform" className="hover:text-terracotta transition-colors">Platform &amp; Marketplace</a>
+          <a href="#storytelling" className="hover:text-terracotta transition-colors">Storytelling</a>
         </div>
         <div className="md:col-span-2 grid gap-3 text-sm">
           <p className="font-mono text-[10px] uppercase tracking-widest text-ink/40">Company</p>
+          <a href="#brands" className="hover:text-terracotta transition-colors">For Brands</a>
+          <a href="#landlords" className="hover:text-terracotta transition-colors">For Landlords</a>
           <a href="#locations" className="hover:text-terracotta transition-colors">Locations</a>
           <a href="#deck" className="hover:text-terracotta transition-colors">Brand Deck</a>
-          <a href="#waitlist" className="hover:text-terracotta transition-colors">Waitlist</a>
         </div>
         <div className="md:col-span-3 grid gap-4 text-sm">
           <p className="font-mono text-[10px] uppercase tracking-widest text-ink/40">Contact</p>
-          <a href="mailto:raman@onenest.uk" className="flex items-center gap-3 hover:text-terracotta transition-colors">
+          <a href="mailto:partnership@onenest.uk" className="flex items-center gap-3 hover:text-terracotta transition-colors">
             <Mail size={16} className="text-[#C9A84C] shrink-0" />
-            raman@onenest.uk
+            partnership@onenest.uk
           </a>
           <span className="flex items-center gap-3 text-ink/70">
             <MapPin size={16} className="text-[#C9A84C] shrink-0" />
