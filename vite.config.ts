@@ -1,27 +1,9 @@
-import { defineConfig, type Plugin } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsConfigPaths from "vite-tsconfig-paths";
-import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import { imagetools } from "vite-imagetools";
-
-function heroPreloadPlugin(): Plugin {
-  return {
-    name: "hero-preload",
-    transformIndexHtml(html, ctx) {
-      if (!ctx.bundle) return html;
-      const heroAvif = Object.keys(ctx.bundle).find(
-        (k) => k.includes("hero-kiosk") && k.endsWith(".avif") && !k.includes("480") && !k.includes("768")
-      );
-      if (!heroAvif) return html;
-      const href = `/${heroAvif}`;
-      return html.replace(
-        "</head>",
-        `<link rel="preload" as="image" href="${href}" type="image/avif" fetchpriority="high" />\n  </head>`
-      );
-    },
-  };
-}
 
 export default defineConfig({
   base: "/",
@@ -37,24 +19,6 @@ export default defineConfig({
   },
   build: {
     target: ["es2022", "chrome100", "firefox100", "safari16"],
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes("node_modules/react-dom") || id.includes("node_modules/react/")) {
-            return "react";
-          }
-          if (id.includes("node_modules/@tanstack/")) {
-            return "tanstack";
-          }
-          if (id.includes("node_modules/recharts") || id.includes("node_modules/d3-")) {
-            return "charts";
-          }
-          if (id.includes("node_modules/@radix-ui/")) {
-            return "radix";
-          }
-        },
-      },
-    },
   },
   server: {
     // Quick tunnels get a fresh random hostname on every run, so allow the
@@ -62,11 +26,14 @@ export default defineConfig({
     allowedHosts: [".trycloudflare.com"],
   },
   plugins: [
-    TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
+    // Renders every route to static HTML at build time. Without this the page
+    // ships an empty <div id="root"> and crawlers see only the <head>.
+    tanstackStart({
+      prerender: { enabled: true, crawlLinks: true, failOnError: true },
+    }),
     react(),
     tailwindcss(),
     tsConfigPaths(),
     imagetools(),
-    heroPreloadPlugin(),
   ],
 });

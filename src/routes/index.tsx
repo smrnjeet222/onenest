@@ -13,40 +13,26 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "A retail incubator inside major UK shopping centres. Independent brands share a staffed counter to test physical retail, then scale across our hubs. We hold the leases, so you never deal with a landlord. Launching Newcastle 2027.",
+          "A retail incubator inside major UK shopping centres. Independent brands share a turn-key retail hub to test physical retail, then scale across our network. We hold the leases, so you never deal with a landlord. Launching Newcastle 2027.",
       },
       { name: "keywords", content: "retail incubator, shared retail, shopping centre retail, independent brands, indie brands, market traders, local makers, retail-as-a-service, Newcastle retail, mall landlords, founder story screens, omnichannel retail, indie brand marketplace" },
       { property: "og:title", content: "OneNest · The retail incubator for indie brands" },
       {
         property: "og:description",
         content:
-          "Test physical retail in a major UK shopping centre without the mall lease, the fit-out or the hire. Share a staffed counter, prove your sales, then scale. We deal with the landlords so you never do.",
+          "Test physical retail in a major UK shopping centre without the mall lease, the fit-out or the hire. Share a turn-key retail hub, prove your sales, then scale. We deal with the landlords so you never do.",
       },
       { property: "og:url", content: "https://onenest.uk/" },
       { property: "og:image", content: "https://onenest.uk/og-banner.jpg" },
       { property: "og:image:width", content: "1216" },
       { property: "og:image:height", content: "640" },
-      { property: "og:image:alt", content: "OneNest · a curated shared retail counter inside a UK shopping centre" },
+      { property: "og:image:alt", content: "OneNest · a curated multi-brand retail hub inside a UK shopping centre" },
       { name: "twitter:title", content: "OneNest · The retail incubator for indie brands" },
       { name: "twitter:description", content: "Test physical retail in a major UK shopping centre without the mall lease, the fit-out or the hire. Prove your sales, then scale. We deal with the landlords so you never do." },
       { name: "twitter:image", content: "https://onenest.uk/og-banner.jpg" },
     ],
     links: [
       { rel: "canonical", href: "https://onenest.uk/" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: "OneNest",
-          url: "https://onenest.uk/",
-          inLanguage: "en-GB",
-          description:
-            "A retail incubator for independent brands inside major UK shopping centres. Online sellers, market traders and local makers share a staffed counter, get real footfall data, and scale on a short licence instead of a long lease of their own.",
-        }),
-      },
     ],
   }),
   component: Index,
@@ -144,7 +130,7 @@ function Hero() {
               INDIE BRANDS.
             </h1>
             <p className="max-w-md text-lg text-ink/70 text-pretty leading-relaxed">
-              Sell online, at markets, or straight from your kitchen table? This is your route into a real shopping centre. Share a staffed counter, prove your sales, then scale across our hubs. We hold the leases, so you never deal with a landlord.
+              Sell online, at markets, or straight from your kitchen table? This is your route into a real shopping centre. Share a turn-key retail hub, prove your sales, then scale across the network. We hold the leases, so you never deal with a landlord.
             </p>
           </div>
           <div className="mt-12 flex flex-wrap gap-4">
@@ -201,7 +187,7 @@ function Hero() {
           className="md:col-span-4 bg-terracotta text-paper p-8 flex flex-col justify-between animate-reveal [animation-delay:250ms] group hover:bg-ink transition-colors"
         >
           <div className="font-mono text-[10px] uppercase tracking-widest text-paper/70 mb-6">
-            One Nest · Shared Counter
+            One Nest · Retail Hub
           </div>
           <div>
             <div className="font-display text-5xl font-extrabold leading-[0.95]">
@@ -327,17 +313,17 @@ function HowItWorks() {
     {
       n: "01",
       t: "Apply to a Cohort",
-      d: "Submit your brand for the next intake. We review product quality, brand values and fit with the other brands on the counter.",
+      d: "Submit your brand for the next intake. We review product quality, brand values and fit with the other brands in the hub.",
     },
     {
       n: "02",
       t: "We Set Up Your Space",
-      d: "One Nest owns the lease, the fit-out and the counter. Your branded section is built out and merchandised for you.",
+      d: "One Nest owns the lease, the fit-out and the hub. Your branded section is built out and merchandised for you.",
     },
     {
       n: "03",
       t: "Our Staff Sell for You",
-      d: "One trained staff member works the counter for the whole cohort, demoing, selling and answering questions on your behalf.",
+      d: "One trained staff member works the hub for the whole cohort, demoing, selling and answering questions on your behalf.",
     },
     {
       n: "04",
@@ -377,8 +363,8 @@ function ConceptSection() {
   const pillars = [
     {
       n: "01",
-      t: "Share the counter",
-      d: "Up to four complementary brands share one physical counter space and one trained staff member, so nobody carries high-street rent, a hiring bill or a shop fit-out on their own.",
+      t: "Share the hub",
+      d: "Up to four complementary brands share one turn-key retail hub and one trained staff member, so nobody carries high-street rent, a hiring bill or a shop fit-out on their own.",
     },
     {
       n: "02",
@@ -388,7 +374,7 @@ function ConceptSection() {
     {
       n: "03",
       t: "Scale on flexible terms",
-      d: "As your numbers grow, so does your space: a bigger counter, then more centres. We stay the mall's tenant on paper, so you expand on a short licence instead of a decade-long lease.",
+      d: "As your numbers grow, so does your space: a bigger footprint in the hub, then more centres. We stay the mall's tenant on paper, so you expand on a short licence instead of a decade-long lease.",
     },
   ];
   return (
@@ -399,7 +385,7 @@ function ConceptSection() {
           Not a shop. <span className="text-forest">An incubator.</span>
         </h2>
         <p className="md:col-span-5 text-ink/70 leading-relaxed">
-          One Nest is a retail incubator: a launchpad where independent brands test selling in real shopping malls without the risk of taking a unit. Online sellers, market traders and local makers, all on one curated, human-staffed counter.
+          One Nest is a retail incubator: a launchpad where independent brands test selling in real shopping malls without the risk of taking a unit. Online sellers, market traders and local makers, all in one curated, human-staffed retail hub.
         </p>
       </div>
 
@@ -439,7 +425,7 @@ function ConceptSection() {
               <span className="font-display text-7xl font-extrabold text-terracotta leading-none">4</span>
             </div>
             <p className="text-sm text-ink/60 mt-3">
-              Curated, non-competing brands per counter, kept deliberately tight so every brand gets real shelf presence and the staff know your products properly.
+              Curated, non-competing brands per hub, kept deliberately tight so every brand gets real shelf presence and the staff know your products properly.
             </p>
           </div>
         </div>
@@ -453,14 +439,14 @@ function StayAndScaleSection() {
     {
       n: "Tier 01",
       t: "Launch",
-      m: "One centre · shared counter",
-      d: "Your branded section of a staffed counter inside your first shopping centre, live in weeks alongside a curated cohort.",
+      m: "One centre · shared hub",
+      d: "Your branded section of a turn-key retail hub inside your first shopping centre, live in weeks alongside a curated cohort.",
     },
     {
       n: "Tier 02",
       t: "Expand",
       m: "More space · prime position",
-      d: "Strong numbers earn you a bigger share of the counter, better positioning and first refusal on the next intake.",
+      d: "Strong numbers earn you a bigger share of the hub, better positioning and first refusal on the next intake.",
     },
     {
       n: "Tier 03",
@@ -487,7 +473,7 @@ function StayAndScaleSection() {
         <SectionLabel index="04" total="10" name="Scaling With Us" />
         <div className="grid md:grid-cols-12 gap-4 items-end mb-12">
           <h2 className="md:col-span-7 font-display text-4xl md:text-6xl font-extrabold tracking-tighter leading-[0.95] text-balance">
-            One counter today. <span className="text-terracotta">A national footprint next.</span>
+            One hub today. <span className="text-terracotta">A national footprint next.</span>
           </h2>
           <p className="md:col-span-5 text-ink/70 leading-relaxed">
             We don't just hand you a shelf and wish you luck. Every step up is earned on your own trading data and unlocked by us, so growth is a commercial decision instead of a leap of faith.
@@ -536,7 +522,7 @@ function StayAndScaleSection() {
               ))}
               <img
                 src={hubInterior.img.src}
-                alt="Staffed One Nest retail counter inside a UK shopping centre"
+                alt="Staffed One Nest multi-brand retail hub inside a UK shopping centre"
                 width={hubInterior.img.w}
                 height={hubInterior.img.h}
                 loading="lazy"
@@ -610,7 +596,7 @@ function DataPlatformSection() {
     },
     {
       t: "Performance Analytics",
-      d: "What's selling, peak trading hours, and how you compare to the other brands on the counter.",
+      d: "What's selling, peak trading hours, and how you compare to the other brands in the hub.",
     },
     {
       t: "Customer Insights",
@@ -629,7 +615,7 @@ function DataPlatformSection() {
           Sell in the mall. Sell online. <span className="text-terracotta">Run both from one place.</span>
         </h2>
         <p className="md:col-span-5 text-ink/70 leading-relaxed">
-          Every brand gets a live dashboard and a storefront on the One Nest marketplace. Most shoppers don't buy on the first pass, so when someone picks your product up and puts it back, they can scan the counter screen and buy that evening from the sofa.
+          Every brand gets a live dashboard and a storefront on the One Nest marketplace. Most shoppers don't buy on the first pass, so when someone picks your product up and puts it back, they can scan the hub screen and buy that evening from the sofa.
         </p>
       </div>
 
@@ -663,10 +649,10 @@ function DataPlatformSection() {
             </div>
           </div>
 
-          {/* Bar chart. Each pair is [counter %, online %] of the plot height. */}
+          {/* Bar chart. Each pair is [in-store %, online %] of the plot height. */}
           <div>
             <p className="font-mono text-[10px] uppercase tracking-widest text-paper/40 mb-3">
-              7-day sales · counter vs online
+              7-day sales · in store vs online
             </p>
             <div className="flex items-end gap-1.5 h-24">
               {[
@@ -677,9 +663,9 @@ function DataPlatformSection() {
                 [45, 20],
                 [58, 30],
                 [50, 26],
-              ].map(([counter, online], i) => (
+              ].map(([inStore, online], i) => (
                 <div key={i} className="flex-1 h-full flex flex-col justify-end gap-0.5">
-                  <div className="w-full bg-terracotta/80" style={{ height: `${counter}%` }} />
+                  <div className="w-full bg-terracotta/80" style={{ height: `${inStore}%` }} />
                   <div className="w-full bg-sage/60" style={{ height: `${online}%` }} />
                 </div>
               ))}
@@ -695,7 +681,7 @@ function DataPlatformSection() {
             <span>Cohort 01 · Newcastle</span>
             <span className="flex items-center gap-4">
               <span className="flex items-center gap-2">
-                <span className="size-2 bg-terracotta/80" /> Counter
+                <span className="size-2 bg-terracotta/80" /> In store
               </span>
               <span className="flex items-center gap-2">
                 <span className="size-2 bg-sage/60" /> Online
@@ -775,7 +761,7 @@ function StorytellingSection() {
   const forLandlords = [
     "A living, moving visual asset on the concourse",
     "No static printed signage going stale by month three",
-    "Omnichannel sales: buy at the counter, or scan and buy later",
+    "Omnichannel sales: buy in the hub, or scan and buy later",
     "Fresh content every cohort, so the space never looks tired",
   ];
   const upNext = [
@@ -792,7 +778,7 @@ function StorytellingSection() {
             Product gets attention. <span className="text-terracotta">Story gets the sale.</span>
           </h2>
           <p className="md:col-span-5 text-ink/70 leading-relaxed">
-            Screens built into the counter carry short founder films, so shoppers meet the person behind the product. Staffed selling up front, your story running behind it.
+            Screens built into the hub carry short founder films, so shoppers meet the person behind the product. Staffed selling up front, your story running behind it.
           </p>
         </div>
 
@@ -842,7 +828,7 @@ function StorytellingSection() {
                 ))}
               </ul>
               <p className="font-mono text-[10px] uppercase tracking-widest text-paper/40">
-                Rotates all day · every brand on the counter
+                Rotates all day · every brand in the hub
               </p>
             </div>
           </div>
@@ -859,7 +845,7 @@ function StorytellingSection() {
                 </span>
               </div>
               <h3 className="font-display text-2xl md:text-3xl font-extrabold text-balance">
-                A counter shelf can't explain why you started. A screen can.
+                A shelf can't explain why you started. A screen can.
               </h3>
               <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
                 {forBrands.map((b) => (
@@ -926,7 +912,7 @@ function ForBrandsSection() {
             Real shop floor. <span className="text-ink">None of the risk.</span>
           </h2>
           <p className="md:col-span-4 text-paper/80 leading-relaxed">
-            Join a cohort and get your brand into a major UK shopping centre. You bring the products; we handle the space, the staff, the systems and the data, then split the cost across every brand on the counter.
+            Join a cohort and get your brand into a major UK shopping centre. You bring the products; we handle the space, the staff, the systems and the data, then split the cost across every brand in the hub.
           </p>
         </div>
 
@@ -1013,7 +999,7 @@ function LandlordsSection() {
     },
     {
       t: "One operator, one contract",
-      d: "You deal with One Nest, not four separate small brands. We hold the agreement, staff the space and run the counter to your centre's standards.",
+      d: "You deal with One Nest, not four separate small brands. We hold the agreement, staff the space and run the hub to your centre's standards.",
     },
   ];
   return (
@@ -1215,7 +1201,7 @@ function BrandDeckSection() {
   ];
   const contents = [
     "Market opportunity & UK retail landscape",
-    "The incubator model, counter design & screen media",
+    "The incubator model, hub design & screen media",
     "Commercial terms, cohort pricing & licence length",
     "Dashboard and marketplace walkthrough",
     "Newcastle Cohort 01 floorplan & footfall projections",
@@ -1543,7 +1529,7 @@ function SiteFooter() {
             One Nest
           </div>
           <p className="text-sm text-ink/60 mt-4 max-w-sm leading-relaxed">
-            A retail incubator for independent brands. Shared staffed counters in real shopping centres, and room to scale without taking on a mall lease of your own.
+            A retail incubator for independent brands. Turn-key multi-brand retail hubs in real shopping centres, and room to scale without taking on a mall lease of your own.
           </p>
         </div>
         <div className="md:col-span-2 grid gap-3 text-sm">

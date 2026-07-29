@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -5,8 +6,10 @@ import {
   createRootRouteWithContext,
   useRouter,
   HeadContent,
+  Scripts,
 } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
+import appCss from "@/styles.css?url";
 
 function NotFoundComponent() {
   return (
@@ -68,12 +71,14 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#f5f0e6" },
       { name: "format-detection", content: "telephone=no" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
-      { title: "OneNest · The Retail Incubator" },
+      { title: "OneNest · The Retail Incubator for Indie Brands" },
       { property: "og:title", content: "OneNest · The Retail Incubator for Indie Brands" },
-      { property: "og:description", content: "A retail incubator for independent brands. Online sellers, market traders and local makers share a staffed counter inside the UK's biggest shopping centres and scale on a short licence instead of a long lease of their own." },
+      { property: "og:description", content: "A retail incubator for independent brands. Online sellers, market traders and local makers share a turn-key retail hub inside major UK shopping centres and scale on a short licence instead of a long lease of their own." },
       { property: "og:url", content: "https://onenest.uk/" },
       { property: "og:site_name", content: "OneNest" },
       { property: "og:type", content: "website" },
@@ -86,27 +91,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://onenest.uk/og-banner.jpg" },
       { name: "twitter:title", content: "OneNest · The Retail Incubator for Indie Brands" },
-      { name: "twitter:description", content: "A retail incubator for independent brands. Online sellers, market traders and local makers share a staffed counter inside the UK's biggest shopping centres and scale on a short licence instead of a long lease of their own." },
+      { name: "twitter:description", content: "A retail incubator for independent brands. Online sellers, market traders and local makers share a turn-key retail hub inside major UK shopping centres and scale on a short licence instead of a long lease of their own." },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", sizes: "any" },
       { rel: "icon", href: "/icon-512.png", type: "image/png", sizes: "512x512" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "OneNest",
-          url: "https://onenest.uk",
-          logo: "https://onenest.uk/icon-512.png",
-          description:
-            "A retail incubator for independent brands inside the UK's biggest shopping centres. Online sellers, market traders and local makers share a staffed counter on a short licence while OneNest carries the mall lease.",
-          areaServed: "GB",
-        }),
-      },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
     ],
   }),
   component: RootComponent,
@@ -114,14 +107,62 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+// Emitted as a real tag rather than via head.scripts: TanStack's <Scripts />
+// drops inline children, which silently stripped the structured data.
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://onenest.uk/#organization",
+      name: "OneNest",
+      url: "https://onenest.uk",
+      logo: "https://onenest.uk/icon-512.png",
+      email: "partnership@onenest.uk",
+      description:
+        "A retail incubator for independent brands inside major UK shopping centres. Online sellers, market traders and local makers share a turn-key, multi-brand retail hub on a short licence while OneNest carries the mall lease.",
+      areaServed: "GB",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://onenest.uk/#website",
+      name: "OneNest",
+      url: "https://onenest.uk/",
+      inLanguage: "en-GB",
+      publisher: { "@id": "https://onenest.uk/#organization" },
+      description:
+        "A retail incubator for independent brands inside major UK shopping centres. Online sellers, market traders and local makers share a turn-key retail hub, get real footfall data, and scale on a short licence instead of a long lease of their own.",
+    },
+  ],
+};
+
+function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
+  return (
+    <html lang="en">
+      <head>
+        <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
+      <body>
+        {children}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <HeadContent />
-      <Outlet />
-      <Toaster position="top-center" />
-    </QueryClientProvider>
+    <RootDocument>
+      <QueryClientProvider client={queryClient}>
+        <Outlet />
+        <Toaster position="top-center" />
+      </QueryClientProvider>
+    </RootDocument>
   );
 }
