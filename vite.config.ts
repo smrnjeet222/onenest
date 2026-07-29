@@ -56,6 +56,11 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    // Quick tunnels get a fresh random hostname on every run, so allow the
+    // whole domain instead of pinning one. Leading dot matches any subdomain.
+    allowedHosts: [".trycloudflare.com"],
+  },
   plugins: [
     TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
     react(),
