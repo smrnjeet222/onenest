@@ -30,6 +30,15 @@ export default defineConfig({
     // ships an empty <div id="root"> and crawlers see only the <head>.
     tanstackStart({
       prerender: { enabled: true, crawlLinks: true, failOnError: true },
+      pages: [
+        // Cloudflare's `not_found_handling: "404-page"` looks for `404.html` at
+        // the assets root. Without autoSubfolderIndex:false this would land at
+        // `404/index.html` like every other route, and never be found.
+        {
+          path: "/404",
+          prerender: { outputPath: "/404", autoSubfolderIndex: false },
+        },
+      ],
     }),
     react(),
     tailwindcss(),

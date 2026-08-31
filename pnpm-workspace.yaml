@@ -1,0 +1,7 @@
+# pnpm 11 no longer reads `node-linker` from .npmrc or the `pnpm` field in
+# package.json; both settings live here now.
+nodeLinker: hoisted
+allowBuilds:
+  esbuild: true
+  sharp: true
+  workerd: true

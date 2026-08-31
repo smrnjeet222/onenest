@@ -9,6 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
+import { META_PIXEL_ID, metaPixelBaseCode } from "@/lib/meta-pixel";
 import appCss from "@/styles.css?url";
 
 function NotFoundComponent() {
@@ -145,8 +146,23 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        {/* Meta Pixel base code. Same raw-tag treatment as the JSON-LD above,
+            and last in <head> so it can't delay the stylesheet. Omitted whole
+            when VITE_META_PIXEL_ID is unset, e.g. local dev. */}
+        {META_PIXEL_ID && <script dangerouslySetInnerHTML={{ __html: metaPixelBaseCode }} />}
       </head>
       <body>
+        {META_PIXEL_ID && (
+          <noscript>
+            <img
+              height="1"
+              width="1"
+              style={{ display: "none" }}
+              alt=""
+              src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+            />
+          </noscript>
+        )}
         {children}
         <Scripts />
       </body>
