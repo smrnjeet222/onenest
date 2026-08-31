@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /thanks
+Disallow: /apply
+Disallow: /404
+Disallow: /api/
 
-Sitemap: https://one-nest-reboot.lovable.app/sitemap.xml
+Sitemap: https://onenest.uk/sitemap.xml

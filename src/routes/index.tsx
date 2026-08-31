@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 import { Mail, MapPin, Linkedin } from "lucide-react";
-import { z } from "zod";
-import { toast } from "sonner";
+import { WaitlistForm } from "@/components/waitlist-form";
+import { trackMeta } from "@/lib/meta-pixel";
 import heroKiosk from "@/assets/hero-kiosk.jpg?w=480;768;1024&format=avif;webp;jpg&as=picture";
 import hubInterior from "@/assets/hub-interior.jpg?w=480;768;1200&format=avif;webp;jpg&as=picture";
 
@@ -37,27 +37,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const waitlistSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(1, "Please enter your name")
-    .max(100, "Name must be under 100 characters"),
-  email: z
-    .string()
-    .trim()
-    .min(1, "Please enter your email address")
-    .email("Enter a valid email address")
-    .max(255, "Email must be under 255 characters"),
-  brand: z
-    .string()
-    .trim()
-    .min(1, "Please enter your brand name")
-    .max(100, "Brand name must be under 100 characters"),
-});
-
-type WaitlistErrors = Partial<Record<keyof z.infer<typeof waitlistSchema>, string>>;
 
 function Index() {
   return (
@@ -1252,6 +1231,7 @@ function BrandDeckSection() {
             </a>
             <a
               href="mailto:partnership@onenest.uk?subject=Brand%20Deck%20Request"
+              onClick={() => trackMeta("Contact", { content_name: "deck-email-founder" })}
               className="border border-paper/30 px-6 py-3 font-bold uppercase text-xs tracking-widest hover:bg-paper hover:text-ink transition-colors"
             >
               Email Founder
@@ -1286,188 +1266,34 @@ function BrandDeckSection() {
   );
 }
 
-function WaitlistForm() {
-  const [values, setValues] = useState({ name: "", email: "", brand: "" });
-  const [errors, setErrors] = useState<WaitlistErrors>({});
-  const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const result = waitlistSchema.safeParse(values);
-    if (!result.success) {
-      const fieldErrors: WaitlistErrors = {};
-      for (const issue of result.error.issues) {
-        const key = issue.path[0] as keyof WaitlistErrors;
-        if (key && !fieldErrors[key]) fieldErrors[key] = issue.message;
-      }
-      setErrors(fieldErrors);
-      toast.error("Please fix the highlighted fields.");
-      return;
-    }
-    setErrors({});
-    setSubmitting(true);
-    const endpoint = "https://formspree.io/f/maqkkedn";
-    try {
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...result.data, source: "onenest-landing" }),
-      });
-      if (!res.ok) {
-        let msg = "Something went wrong. Please try again.";
-        try {
-          const data = (await res.json()) as { errors?: Array<{ message?: string }> };
-          if (data.errors?.[0]?.message) msg = data.errors[0].message;
-        } catch {
-          /* ignore */
-        }
-        throw new Error(msg);
-      }
-      setSuccess(true);
-      toast.success("You're on the waitlist. We'll be in touch.");
-      setValues({ name: "", email: "", brand: "" });
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Network error. Please try again.");
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  if (success) {
-    return (
-      <div className="bg-paper/10 border border-paper/30 p-8 md:p-10">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-peach mb-3">
-          Confirmed · Application received
-        </p>
-        <h3 className="font-display text-2xl md:text-3xl font-extrabold mb-3">
-          You're in for Newcastle Cohort 01.
-        </h3>
-        <p className="text-paper/70 text-sm leading-relaxed mb-6">
-          We'll review your brand and reply within 7 working days. In the meantime, request the brand deck or email the founder directly.
-        </p>
-        <button
-          type="button"
-          onClick={() => setSuccess(false)}
-          className="font-mono text-[10px] uppercase tracking-widest text-peach hover:text-paper transition-colors"
-        >
-          ← Submit another brand
-        </button>
-      </div>
-    );
-  }
-
-  return (
-    <form noValidate onSubmit={handleSubmit} className="bg-paper/10 border border-paper/20 p-8 md:p-10 grid gap-6">
-      {/* Honeypot: real users never fill this */}
-      <input
-        type="text"
-        name="_gotcha"
-        tabIndex={-1}
-        autoComplete="off"
-        className="hidden"
-        aria-hidden="true"
-      />
-      <Field
-        id="name"
-        label="Your Name"
-        value={values.name}
-        onChange={(v) => setValues((s) => ({ ...s, name: v }))}
-        error={errors.name}
-        autoComplete="name"
-        maxLength={100}
-      />
-      <Field
-        id="email"
-        type="email"
-        label="Email Address"
-        value={values.email}
-        onChange={(v) => setValues((s) => ({ ...s, email: v }))}
-        error={errors.email}
-        autoComplete="email"
-        maxLength={255}
-        required
-      />
-      <Field
-        id="brand"
-        label="Brand Name"
-        value={values.brand}
-        onChange={(v) => setValues((s) => ({ ...s, brand: v }))}
-        error={errors.brand}
-        autoComplete="organization"
-        maxLength={100}
-      />
-      <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:justify-between pt-2">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-paper/50">
-          We'll never share your details. UK GDPR compliant.
-        </p>
-        <button
-          type="submit"
-          disabled={submitting}
-          className="bg-terracotta text-paper px-8 py-4 text-xs font-bold uppercase tracking-widest ring-1 ring-terracotta hover:bg-peach hover:text-ink transition-colors disabled:opacity-60"
-        >
-          {submitting ? "Submitting…" : "Apply for Next Cohort"}
-        </button>
-      </div>
-    </form>
-  );
-}
-
-function Field({
-  id,
-  label,
-  value,
-  onChange,
-  error,
-  type = "text",
-  autoComplete,
-  maxLength,
-  required,
-}: {
-  id: string;
-  label: string;
-  value: string;
-  onChange: (v: string) => void;
-  error?: string;
-  type?: string;
-  autoComplete?: string;
-  maxLength?: number;
-  required?: boolean;
-}) {
-  return (
-    <div className="grid gap-2">
-      <label htmlFor={id} className="font-mono text-[10px] uppercase tracking-widest text-paper/60">
-        {label}
-        {required && <span className="text-peach ml-1" aria-hidden="true">*</span>}
-      </label>
-      <input
-        id={id}
-        name={id}
-        type={type}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        autoComplete={autoComplete}
-        maxLength={maxLength}
-        required={required}
-        aria-required={required || undefined}
-        aria-invalid={!!error}
-        aria-describedby={error ? `${id}-error` : undefined}
-        className={`bg-paper/5 border ${
-          error ? "border-peach" : "border-paper/20"
-        } px-4 py-4 text-sm text-paper placeholder:text-paper/60 focus:outline-none focus:bg-paper/15 focus:border-paper/60 transition-colors`}
-      />
-      {error && (
-        <p id={`${id}-error`} className="font-mono text-[10px] uppercase tracking-widest text-peach">
-          {error}
-        </p>
-      )}
-    </div>
-  );
-}
-
 function WaitlistSection() {
+  const ref = useRef<HTMLElement>(null);
+
+  // The form sits 14 sections down the page, so "reached the form" is the
+  // number that explains a bad Lead rate: ad clicks that never scroll this far
+  // are a landing-page problem, ones that arrive and don't submit are a form
+  // problem. Fires once per pageview.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        trackMeta("ViewContent", { content_name: "waitlist-form" });
+        observer.disconnect();
+      },
+      { threshold: 0.4 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="waitlist" className="bg-forest text-paper py-24 relative overflow-hidden">
+    <section
+      ref={ref}
+      id="waitlist"
+      className="bg-forest text-paper py-24 relative overflow-hidden"
+    >
       <div className="absolute top-0 right-0 w-96 h-96 bg-sage/15 rounded-full -mr-40 -mt-40 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-[28rem] h-[28rem] bg-terracotta/15 rounded-full -ml-48 -mb-48 blur-3xl" />
       <div className="relative max-w-7xl mx-auto px-6">
@@ -1512,7 +1338,7 @@ function WaitlistSection() {
             <h3 className="font-display text-2xl md:text-3xl font-extrabold mb-6">
               Apply for a place in the next cohort.
             </h3>
-            <WaitlistForm />
+            <WaitlistForm source="onenest-landing" />
           </div>
         </div>
       </div>
@@ -1549,7 +1375,11 @@ function SiteFooter() {
         </div>
         <div className="md:col-span-3 grid gap-4 text-sm">
           <p className="font-mono text-[10px] uppercase tracking-widest text-ink/40">Contact</p>
-          <a href="mailto:partnership@onenest.uk" className="flex items-center gap-3 hover:text-terracotta transition-colors">
+          <a
+            href="mailto:partnership@onenest.uk"
+            onClick={() => trackMeta("Contact", { content_name: "footer-email" })}
+            className="flex items-center gap-3 hover:text-terracotta transition-colors"
+          >
             <Mail size={16} className="text-[#C9A84C] shrink-0" />
             partnership@onenest.uk
           </a>

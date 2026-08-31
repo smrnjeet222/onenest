@@ -1,0 +1,31 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "onenest",
+  "main": "worker/index.ts",
+  // Pins runtime behaviour. Bump deliberately after reading the compat changelog.
+  "compatibility_date": "2026-08-31",
+  "assets": {
+    // TanStack Start emits the prerendered static site here.
+    // dist/server is build-time only and is never uploaded.
+    "directory": "./dist/client",
+    "binding": "ASSETS",
+
+    // Default is "auto-trailing-slash", which 307s /apply -> /apply/. Every
+    // canonical tag and ad landing URL points at the slashless form, so the
+    // default would redirect the exact URLs we advertise. Serve them directly.
+    "html_handling": "drop-trailing-slash",
+
+    // Serve the prerendered 404.html with a real 404 status instead of an
+    // empty body. Requires 404.html at the assets root — see vite.config.ts.
+    "not_found_handling": "404-page"
+
+    // run_worker_first is intentionally left at its default (false): matching
+    // assets are served by the edge without ever invoking the Worker, which is
+    // both faster and cheaper than routing every request through JS.
+  },
+  "observability": {
+    // Makes `console.error` from the CAPI relay visible in the dashboard
+    // and via `wrangler tail`.
+    "enabled": true
+  }
+}
