@@ -4,6 +4,18 @@
   "main": "worker/index.ts",
   // Pins runtime behaviour. Bump deliberately after reading the compat changelog.
   "compatibility_date": "2026-08-31",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    {
+      "pattern": "onenest.uk",
+      "custom_domain": true
+    }
+  ],
+  "vars": {
+    "VITE_META_PIXEL_ID": "1670779981057903",
+    "META_PIXEL_ID": "1670779981057903"
+  },
   "assets": {
     // TanStack Start emits the prerendered static site here.
     // dist/server is build-time only and is never uploaded.

@@ -1,0 +1,12 @@
+# Meta Conversions API (CAPI) local development variables
+# Copy this file to `.dev.vars` for local `wrangler dev` testing.
+# `.dev.vars` is gitignored and is read by Wrangler for local secrets.
+
+# Meta Pixel / Dataset ID
+META_PIXEL_ID=1670779981057903
+
+# Meta Conversions API Access Token (Generated in Meta Events Manager -> Settings -> Conversions API)
+META_CAPI_ACCESS_TOKEN=your_meta_capi_access_token_here
+
+# Optional: Test Event Code (From Events Manager -> Test Events tab)
+# META_CAPI_TEST_EVENT_CODE=TEST12345
